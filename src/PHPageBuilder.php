@@ -2,6 +2,8 @@
 
 namespace PHPageBuilder;
 
+use Illuminate\Support\Facades\Log;
+use PgSql\Lob;
 use PHPageBuilder\Contracts\AuthContract;
 use PHPageBuilder\Contracts\PageContract;
 use PHPageBuilder\Contracts\PageTranslationContract;

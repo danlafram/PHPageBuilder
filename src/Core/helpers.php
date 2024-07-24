@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Log;
 use PHPageBuilder\Extensions;
 
 if (! function_exists('phpb_e')) {
@@ -221,6 +222,35 @@ if (! function_exists('phpb_url')) {
     function phpb_url($module, array $parameters = [], $fullUrl = true)
     {
         $url = $fullUrl ? phpb_full_url('') : '';
+        Log::info('$url ' . $url);
+        $url .= phpb_config($module . '.url');
+        Log::info('$url 2 ' . $url);
+
+        if (! empty($parameters)) {
+            $url .= '?';
+            $pairs = [];
+            foreach ($parameters as $key => $value) {
+                $pairs[] = phpb_e($key) . '=' . phpb_e($value);
+            }
+            $url .= implode('&', $pairs);
+        }
+
+        return $url;
+    }
+}
+
+if (! function_exists('phpb_tenant_url')) {
+    /**
+     * Give the full URL of a given public path that is using a tenant domain.
+     *
+     * @param string $module
+     * @param array $parameters
+     * @param bool $fullUrl
+     * @return string
+     */
+    function phpb_tenant_url($module, array $parameters = [], $fullUrl = true)
+    {
+        $url = $fullUrl ? tenant()->domain()->first()->domain : '';
         $url .= phpb_config($module . '.url');
 
         if (! empty($parameters)) {

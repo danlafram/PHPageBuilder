@@ -46,9 +46,9 @@ window.themeBlocks = <?= json_encode($blocks) ?>;
 window.blockSettings = <?= json_encode($blockSettings) ?>;
 window.pageBlocks = <?= json_encode($pageRenderer->getPageBlocksData()) ?>;
 window.pages = <?= json_encode($pageBuilder->getPages()) ?>;
-window.renderBlockUrl = '<?= phpb_url('pagebuilder', ['action' => 'renderBlock', 'page' => $page->getId()]) ?>';
+window.renderBlockUrl = '<?= phpb_tenant_url('pagebuilder', ['action' => 'renderBlock', 'page' => $page->getId()]) ?>';
 window.injectionScriptUrl = '<?= phpb_asset('pagebuilder/page-injection.js') ?>';
-window.renderLanguageVariantUrl = '<?= phpb_url('pagebuilder', ['action' => 'renderLanguageVariant', 'page' => $page->getId()]) ?>';
+window.renderLanguageVariantUrl = '<?= phpb_tenant_url('pagebuilder', ['action' => 'renderLanguageVariant', 'page' => $page->getId()]) ?>';
 
 <?php
 $config = require __DIR__ . '/grapesjs/config.php';

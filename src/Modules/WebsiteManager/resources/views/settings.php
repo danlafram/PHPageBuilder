@@ -2,7 +2,7 @@
 $setting = phpb_instance('setting');
 ?>
 
-<form method="post" action="<?= phpb_url('website_manager', ['route' => 'settings', 'action' => 'update', 'tab' => 'settings']) ?>">
+<form method="post" action="<?= phpb_tenant_url('website_manager', ['route' => 'settings', 'action' => 'update', 'tab' => 'settings']) ?>">
 
     <div class="main-spacing">
         <?php
@@ -41,7 +41,7 @@ $setting = phpb_instance('setting');
         <label class="d-block">
             <?= phpb_trans('website-manager.pagebuilder-block-images') ?>
         </label>
-        <a href="<?= phpb_url('website_manager', ['route' => 'settings', 'action' => 'renderBlockThumbs']) ?>" class="btn btn-secondary btn-sm mr-1">
+        <a href="<?= phpb_tenant_url('website_manager', ['route' => 'settings', 'action' => 'renderBlockThumbs']) ?>" class="btn btn-secondary btn-sm mr-1">
             <?= phpb_trans('website-manager.render-thumbs') ?>
         </a>
     </div>

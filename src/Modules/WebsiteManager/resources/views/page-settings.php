@@ -15,7 +15,7 @@ $pageTranslations = $page ? $page->getTranslations() : [];
     <div class="col-12">
 
         <div class="manager-panel">
-            <form method="post" action="<?= phpb_url('website_manager', ['route' => 'page_settings', 'action' => $action]) ?><?= $pageUrlParam ?>">
+            <form method="post" action="<?= phpb_tenant_url('website_manager', ['route' => 'page_settings', 'action' => $action]) ?><?= $pageUrlParam ?>">
                 <h4>
                     <?php
                     if ($action === 'create'):
@@ -83,7 +83,7 @@ $pageTranslations = $page ? $page->getTranslations() : [];
 
                 <hr class="mb-3">
 
-                <a href="<?= phpb_url('website_manager') ?>" class="btn btn-light btn-sm mr-1">
+                <a href="<?= phpb_tenant_url('website_manager') ?>" class="btn btn-light btn-sm mr-1">
                     <?= phpb_trans('website-manager.back') ?>
                 </a>
                 <button class="btn btn-primary btn-sm">

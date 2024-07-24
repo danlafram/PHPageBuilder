@@ -20,7 +20,7 @@ $(document).ready(function() {
             //document.body.append(canvas);
             $.ajax({
                 type: "POST",
-                url: "<?= phpb_url('pagebuilder', ['route' => 'thumb_generator', 'action' => 'upload']) ?>",
+                url: "<?= phpb_tenant_url('pagebuilder', ['route' => 'thumb_generator', 'action' => 'upload']) ?>",
                 data: {
                     block: "<?= $blockSlug ?>",
                     data: data

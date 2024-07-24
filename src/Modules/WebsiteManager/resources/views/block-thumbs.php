@@ -16,12 +16,12 @@ if (isset($page)) {
             <h4><?= phpb_trans('website-manager.render-thumbs') ?></h4>
 
             <div class="main-spacing">
-                <iframe class="thumb-renderer" src="<?= phpb_url('pagebuilder', ['route' => 'thumb_generator', 'action' => 'renderNextBlockThumb']) ?>"></iframe>
+                <iframe class="thumb-renderer" src="<?= phpb_tenant_url('pagebuilder', ['route' => 'thumb_generator', 'action' => 'renderNextBlockThumb']) ?>"></iframe>
             </div>
 
             <hr class="mb-3">
 
-            <a href="<?= phpb_url('website_manager') ?>" class="btn btn-light btn-sm mr-1">
+            <a href="<?= phpb_tenant_url('website_manager') ?>" class="btn btn-light btn-sm mr-1">
                 <?= phpb_trans('website-manager.back') ?>
             </a>
         </div>
