@@ -61,6 +61,21 @@ if (! function_exists('phpb_theme_asset')) {
     }
 }
 
+if (! function_exists('phpb_universal_asset')) {
+    /**
+     * Return the public path of a universal asset that is shared by all tenants.
+     *
+     * @param string $path
+     * @return string
+     */
+    function phpb_universal_asset($path)
+    {
+        // $themeFolder = phpb_config('theme.folder_url') . '/' . phpb_config('theme.active_theme');
+        $publicFolder = '/public';
+        return phpb_full_url($publicFolder . '/' . $path);
+    }
+}
+
 if (! function_exists('phpb_flash')) {
     /**
      * Return the flash data with the given key (as dot-separated multidimensional array selector) or false if not set.
