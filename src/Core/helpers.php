@@ -222,9 +222,7 @@ if (! function_exists('phpb_url')) {
     function phpb_url($module, array $parameters = [], $fullUrl = true)
     {
         $url = $fullUrl ? phpb_full_url('') : '';
-        Log::info('$url ' . $url);
         $url .= phpb_config($module . '.url');
-        Log::info('$url 2 ' . $url);
 
         if (! empty($parameters)) {
             $url .= '?';
@@ -239,9 +237,28 @@ if (! function_exists('phpb_url')) {
     }
 }
 
+if (! function_exists('phpb_tenant_full_url')) {
+    /**
+     * Give the full URL of a given URL which is relative to the base tenant URL.
+     *
+     * @param string $urlRelativeToBaseUrl
+     * @return string
+     */
+    function phpb_tenant_full_url($urlRelativeToBaseUrl)
+    {
+        // if the URL is already a full URL, do not alter the URL
+        if (strpos($urlRelativeToBaseUrl, 'http://') === 0 || strpos($urlRelativeToBaseUrl, 'https://') === 0) {
+            return $urlRelativeToBaseUrl;
+        }
+
+        $baseUrl = tenant()->domain()->first()->domain;
+        return 'http://' . rtrim($baseUrl, '/') . $urlRelativeToBaseUrl;
+    }
+}
+
 if (! function_exists('phpb_tenant_url')) {
     /**
-     * Give the full URL of a given public path that is using a tenant domain.
+     * Give the URL of a given public path that is using a tenant domain.
      *
      * @param string $module
      * @param array $parameters
@@ -262,9 +279,28 @@ if (! function_exists('phpb_tenant_url')) {
             $url .= implode('&', $pairs);
         }
 
-        return $url;
+        // TODO: If dev, http. If prod, https (?)
+        return 'http://' . $url;
     }
 }
+
+if (! function_exists('phpb_tenant_back_url')) {
+    /**
+     * Get the Go Back URL for the tenant.
+     *
+     * @param string $urlRelativeToBaseUrl
+     * @return string
+     */
+    function phpb_tenant_back_url()
+    {
+        $url = tenant()->domain()->first()->domain;
+
+        // TODO: If dev, http. If prod, https (?)
+        return 'http://' . $url . '/admin/theme';
+    }
+}
+
+
 
 if (! function_exists('phpb_current_full_url')) {
     /**

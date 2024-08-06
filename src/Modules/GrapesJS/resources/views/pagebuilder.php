@@ -144,18 +144,18 @@ require __DIR__ . '/grapesjs/trait-manager.php';
 </div>
 
 <div id="sidebar-bottom-buttons">
-    <button id="save-page" class="btn" data-url="<?= phpb_url('pagebuilder', ['action' => 'store', 'page' => $page->getId()]) ?>">
+    <button id="save-page" class="btn" data-url="<?= phpb_tenant_url('pagebuilder', ['action' => 'store', 'page' => $page->getId()]) ?>">
         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
         <i class="fa fa-save"></i>
         <?= phpb_trans('pagebuilder.save-page') ?>
     </button>
 
-    <a id="view-page" href="<?= phpb_e(phpb_full_url($page->getRoute())) ?>" target="_blank" class="btn">
+    <a id="view-page" href="<?= phpb_e(phpb_tenant_full_url($page->getRoute())) ?>" target="_blank" class="btn">
         <i class="fa fa-external-link"></i>
         <?= phpb_trans('pagebuilder.view-page') ?>
     </a>
 
-    <a id="go-back" href="<?= phpb_e(phpb_full_url(phpb_config('pagebuilder.actions.back'))) ?>" class="btn">
+    <a id="go-back" href="<?= phpb_e(phpb_tenant_back_url()) ?>" class="btn">
         <i class="fa fa-arrow-circle-left"></i>
         <?= phpb_trans('pagebuilder.go-back') ?>
     </a>
