@@ -74,7 +74,6 @@ class DatabasePageRouter implements RouterContract
             if ($this->onRoute($urlSegments, $routeSegments)) {
                 $fullRoute = implode('/', $routeSegments);
                 $matchedPage = $this->getMatchedPage($fullRoute, $this->routeToPageTranslationIdMapping[$fullRoute]);
-
                 if ($matchedPage) {
                     global $phpb_route_parameters;
                     $phpb_route_parameters = $this->routeParameters;

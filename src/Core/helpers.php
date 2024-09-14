@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Log;
 use PHPageBuilder\Extensions;
 
 if (! function_exists('phpb_e')) {
@@ -266,6 +265,7 @@ if (! function_exists('phpb_tenant_full_url')) {
             return $urlRelativeToBaseUrl;
         }
 
+        // TODO: Update this for prod/non-prod for http vs https.
         $baseUrl = tenant()->domain()->first()->domain;
         return 'http://' . rtrim($baseUrl, '/') . $urlRelativeToBaseUrl;
     }

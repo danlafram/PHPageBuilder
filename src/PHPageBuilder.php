@@ -30,7 +30,7 @@ class PHPageBuilder
     /**
      * @var PageBuilderContract $pageBuilder
      */
-    protected $pageBuilder;
+    public $pageBuilder;
 
     /**
      * @var RouterContract $router
@@ -376,7 +376,7 @@ class PHPageBuilder
      * @param $url
      * @return PageTranslationContract|null
      */
-    protected function resolvePageLanguageVariantFromUrl($url)
+    public function resolvePageLanguageVariantFromUrl($url)
     {
         return $this->router->resolve($url);
     }
