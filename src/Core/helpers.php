@@ -267,7 +267,12 @@ if (! function_exists('phpb_tenant_full_url')) {
 
         // TODO: Update this for prod/non-prod for http vs https.
         $baseUrl = tenant()->domain()->first()->domain;
-        return 'http://' . rtrim($baseUrl, '/') . $urlRelativeToBaseUrl;
+        if(env('APP_ENV') === 'local'){
+            return 'http://' . rtrim($baseUrl, '/') . $urlRelativeToBaseUrl;
+        } else {
+            return 'https://' . rtrim($baseUrl, '/') . $urlRelativeToBaseUrl;
+        }
+        
     }
 }
 
@@ -295,7 +300,11 @@ if (! function_exists('phpb_tenant_url')) {
         }
 
         // TODO: If dev, http. If prod, https (?)
-        return 'http://' . $url;
+        if(env('APP_ENV') === 'local'){
+            return 'http://' . $url;
+        } else {
+            return 'https://' . $url;
+        }
     }
 }
 
