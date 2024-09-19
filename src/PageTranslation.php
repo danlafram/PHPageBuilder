@@ -4,7 +4,7 @@ namespace PHPageBuilder;
 
 use PHPageBuilder\Contracts\PageContract;
 use PHPageBuilder\Contracts\PageTranslationContract;
-use PHPageBuilder\Repositories\PageRepository;
+use App\Services\PageRepository;
 
 class PageTranslation implements PageTranslationContract
 {
