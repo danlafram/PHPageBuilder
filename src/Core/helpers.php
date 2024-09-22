@@ -146,7 +146,7 @@ if (! function_exists('phpb_config')) {
                 return '';
             }
         }
-        logger('subArray: ' . $subArray);
+        // logger('subArray: ' . $subArray);
         return $subArray;
     }
 }
