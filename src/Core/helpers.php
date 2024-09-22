@@ -132,7 +132,8 @@ if (! function_exists('phpb_config')) {
 
         // if no dot notation is used, return first dimension value or empty string
         if (strpos($key, '.') === false) {
-            logger("returning phpb_config[key]: " . $phpb_config[$key]);
+            // logger("returning phpb_config[key]: " . $phpb_config[$key]);
+            logger(print_r($phpb_config[$key], true));
             return $phpb_config[$key] ?? '';
         }
 
@@ -147,6 +148,8 @@ if (! function_exists('phpb_config')) {
             }
         }
         // logger('subArray: ' . $subArray);
+
+        logger(print_r($subArray, true));
         return $subArray;
     }
 }
