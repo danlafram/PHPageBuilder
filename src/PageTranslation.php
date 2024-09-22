@@ -4,7 +4,7 @@ namespace PHPageBuilder;
 
 use PHPageBuilder\Contracts\PageContract;
 use PHPageBuilder\Contracts\PageTranslationContract;
-use App\Services\PageRepository;
+use App\Services\PageRepository; // This is causing problems
 
 class PageTranslation implements PageTranslationContract
 {
@@ -16,6 +16,7 @@ class PageTranslation implements PageTranslationContract
     public function getPage()
     {
         $foreignKey = phpb_config('page.translation.foreign_key');
+        logger('foreign key: ' . $foreignKey);
         return (new PageRepository)->findWithId($this->{$foreignKey});
     }
 }

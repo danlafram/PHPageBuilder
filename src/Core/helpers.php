@@ -128,8 +128,11 @@ if (! function_exists('phpb_config')) {
     {
         global $phpb_config;
 
+        logger('key: ' . $key);
+
         // if no dot notation is used, return first dimension value or empty string
         if (strpos($key, '.') === false) {
+            logger("returning phpb_config[key]: " . $phpb_config[$key]);
             return $phpb_config[$key] ?? '';
         }
 
@@ -143,7 +146,7 @@ if (! function_exists('phpb_config')) {
                 return '';
             }
         }
-
+        logger('subArray: ' . $subArray);
         return $subArray;
     }
 }
