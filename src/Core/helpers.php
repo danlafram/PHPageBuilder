@@ -128,12 +128,8 @@ if (! function_exists('phpb_config')) {
     {
         global $phpb_config;
 
-        logger('key: ' . $key);
-
         // if no dot notation is used, return first dimension value or empty string
         if (strpos($key, '.') === false) {
-            // logger("returning phpb_config[key]: " . $phpb_config[$key]);
-            logger(print_r($phpb_config[$key], true));
             return $phpb_config[$key] ?? '';
         }
 
@@ -147,9 +143,6 @@ if (! function_exists('phpb_config')) {
                 return '';
             }
         }
-        // logger('subArray: ' . $subArray);
-
-        logger(print_r($subArray, true));
         return $subArray;
     }
 }
@@ -273,7 +266,7 @@ if (! function_exists('phpb_tenant_full_url')) {
 
         // TODO: Update this for prod/non-prod for http vs https.
         $baseUrl = tenant()->domain()->first()->domain;
-        if(env('APP_ENV') === 'local'){
+        if(config('app.env') === 'local'){
             return 'http://' . rtrim($baseUrl, '/') . $urlRelativeToBaseUrl;
         } else {
             return 'https://' . rtrim($baseUrl, '/') . $urlRelativeToBaseUrl;
@@ -305,8 +298,7 @@ if (! function_exists('phpb_tenant_url')) {
             $url .= implode('&', $pairs);
         }
 
-        // TODO: If dev, http. If prod, https (?)
-        if(env('APP_ENV') === 'local'){
+        if(config('app.env') === 'local'){
             return 'http://' . $url;
         } else {
             return 'https://' . $url;

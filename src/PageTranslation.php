@@ -15,8 +15,9 @@ class PageTranslation implements PageTranslationContract
      */
     public function getPage()
     {
+        
         $foreignKey = phpb_config('page.translation.foreign_key');
-        logger('foreign key: ' . $foreignKey);
+        logger("this->foreignKey" . $this->{$foreignKey});
         return (new PageRepository)->findWithId($this->{$foreignKey});
     }
 }

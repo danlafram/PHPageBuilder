@@ -2,6 +2,7 @@
 
 namespace PHPageBuilder\Modules\Router;
 
+use App\Models\PageTranslation;
 use PHPageBuilder\Contracts\PageContract;
 use PHPageBuilder\Contracts\PageTranslationContract;
 use PHPageBuilder\Contracts\RouterContract;
@@ -56,8 +57,10 @@ class DatabasePageRouter implements RouterContract
         // split URL into segments using / as separator
         $urlSegments = explode('/', $url);
 
-        // request all routes and convert each to its segments using / as separator
-        $pageTranslations = $this->pageTranslationRepository->getAll(['id', 'route']);
+        // request all routes for the tenant and convert each to its segments using / as separator
+        $tenant_id = tenant()->id;
+        $pageTranslations = PageTranslation::where('tenant_id', '=', $tenant_id)->get();
+        logger(print_r($pageTranslations, true));
         $routes = [];
         foreach ($pageTranslations as $pageTranslation) {
             $route = $pageTranslation->route;

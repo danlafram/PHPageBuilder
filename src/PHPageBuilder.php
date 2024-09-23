@@ -346,6 +346,7 @@ class PHPageBuilder
         if ($pageTranslation !== null) {
             $page = $pageTranslation->getPage();
         }
+
         // if the URL cannot be resolved, but the lowercase version of the URL can be resolved, redirect to the lowercase URL
         if (($page->logic ?? '') === 'page-not-found' && phpb_current_relative_url() !== strtolower(phpb_current_relative_url())) {
             $pageLowerCaseUrlTranslation = $this->resolvePageLanguageVariantFromUrl(strtolower(phpb_current_relative_url()));
