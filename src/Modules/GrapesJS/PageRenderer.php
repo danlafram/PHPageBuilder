@@ -184,7 +184,6 @@ class PageRenderer
         $renderer = $this;
         $page = $this->page;
         $body = $this->forPageBuilder ? '<div phpb-content-container="true"></div>' : $this->renderBody();
-
         $layoutPath = $this->getPageLayoutPath();
         if ($layoutPath) {
             ob_start();
@@ -194,10 +193,9 @@ class PageRenderer
         } else {
             $pageHtml = $body;
         }
-
         // parse any shortcodes present in the page layout
         $pageHtml = $this->parseShortcodes($pageHtml);
-
+        
         return $pageHtml;
     }
 
