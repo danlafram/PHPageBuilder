@@ -461,7 +461,8 @@ class PHPageBuilder
         }
 
         $uploadedFile = $uploadedFile[0];
-        $serverFile = realpath(phpb_config('storage.uploads_folder') . '/' . $uploadedFile->server_file);
+        // Made an update here to use storage_path to make the uploads tenant specific
+        $serverFile = realpath(storage_path('app/public') . '/' . $uploadedFile->server_file);
         // add backwards compatibility for files uploaded with PHPageBuilder <= v0.12.0, stored as /uploads/{id}.{extension}
         if (! $serverFile) $serverFile = realpath(phpb_config('storage.uploads_folder') . '/' . basename($uploadedFile->server_file));
         if (! $serverFile) {

@@ -11,7 +11,6 @@ use PHPageBuilder\Modules\GrapesJS\Upload\Uploader;
 use PHPageBuilder\Repositories\PageRepository;
 use PHPageBuilder\Repositories\UploadRepository;
 use Exception;
-use Illuminate\Support\Facades\Log;
 
 class PageBuilder implements PageBuilderContract
 {
@@ -128,9 +127,9 @@ class PageBuilder implements PageBuilderContract
         $uploader = phpb_instance(Uploader::class, ['files']);
         $uploader
             ->file_name($publicId . '/' . str_replace(' ', '-', $uploader->file_src_name))
-            ->upload_to(phpb_config('storage.uploads_folder') . '/')
+            ->upload_to(storage_path('app/public') . '/') // Update here to use storage_path and make the uploads tenant specific
             ->run();
-
+        
         if (! $uploader->was_uploaded) {
             die("Upload error: {$uploader->error}");
         }

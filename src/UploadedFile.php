@@ -11,6 +11,7 @@ class UploadedFile
      */
     public function getUrl()
     {
-        return phpb_full_url(phpb_config('general.uploads_url') . '/' . $this->public_id . '/' . $this->original_file);
+        // Made an update here to handle tenant specific assets
+        return phpb_tenant_full_url('/tenancy/assets/' . $this->public_id . '/' . $this->original_file);
     }
 }
