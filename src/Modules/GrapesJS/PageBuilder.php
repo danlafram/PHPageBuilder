@@ -137,12 +137,14 @@ class PageBuilder implements PageBuilderContract
         $originalMime = $uploader->file_src_mime;
         $serverFile = $uploader->final_file_name;
 
+        $tenant_id = tenant()->id;
         $uploadRepository = new UploadRepository;
         $uploadedFile = $uploadRepository->create([
             'public_id' => $publicId,
             'original_file' => $originalFile,
             'mime_type' => $originalMime,
-            'server_file' => $serverFile
+            'server_file' => $serverFile,
+            'tenant_id' => $tenant_id
         ]);
 
         echo json_encode([
@@ -218,9 +220,9 @@ class PageBuilder implements PageBuilderContract
             $blockSettings[$slug] = $adapter->getBlockSettingsArray();
         }
 
-        // create an array of all uploaded assets
         $assets = [];
-        foreach ((new UploadRepository)->getAll() as $file) {
+        // Changed this to findWhere to scope the assets to the currently logged in user
+        foreach ((new UploadRepository)->findWhere('tenant_id', tenant()->id) as $file) {
             $assets[] = [
                 'src' => $file->getUrl(),
                 'public_id' => $file->public_id

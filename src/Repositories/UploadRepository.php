@@ -28,7 +28,8 @@ class UploadRepository extends BaseRepository
      */
     public function create(array $data)
     {
-        $fields = ['public_id', 'original_file', 'mime_type', 'server_file'];
+        // TODO: Add tenant_id to this create.
+        $fields = ['public_id', 'original_file', 'mime_type', 'server_file', 'tenant_id'];
         foreach ($fields as $field) {
             if (! isset($data[$field]) || ! is_string($data[$field])) {
                 return false;
@@ -40,6 +41,23 @@ class UploadRepository extends BaseRepository
             'original_file' => $data['original_file'],
             'mime_type' => $data['mime_type'],
             'server_file' => $data['server_file'],
+            'tenant_id' => $data['tenant_id'],
         ]);
     }
+
+    /**
+     * Return the instances for which the given condition holds.
+     *
+     * @param string $column         do NOT pass user input here
+     * @param string $value
+     * @return array
+     */
+    // public function findWhere($column, $value)
+    // {
+    //     $column = $this->removeNonAlphaNumeric($column);
+    //     return $this->createInstances($this->db->select(
+    //         "SELECT * FROM {$this->table} WHERE {$column} = ?",
+    //         [$value]
+    //     ));
+    // }
 }
